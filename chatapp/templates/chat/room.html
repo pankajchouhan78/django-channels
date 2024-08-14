@@ -11,6 +11,8 @@
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
     <script>
+
+        
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
@@ -23,7 +25,8 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            let user = ("{{ user.username }}" === data.sender) ? 'you' : data.sender
+            document.querySelector('#chat-log').value += (user + " - " + data.message + '\n');
         };
 
         chatSocket.onclose = function(e) {
