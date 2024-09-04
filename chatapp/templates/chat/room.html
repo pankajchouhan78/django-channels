@@ -6,15 +6,22 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+    <br>
+    <h1>Welcome {{user.username}}</h1>
+    <br>
+    <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
+    <br><br><br><br>
+
+    <a href="{% url 'logout_user' %}">Log out</a>
+
     {{ room_name|json_script:"room-name" }}
     <script>
 
         
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
+        console.log(window.location.host) 
         const chatSocket = new WebSocket(
             'ws://'
             + window.location.host

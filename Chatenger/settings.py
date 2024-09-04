@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'chatapp',
     'channels',
     'accounts',
+    'blogapp',
+    'tic_tac_toe',
 ]
 
 MIDDLEWARE = [
